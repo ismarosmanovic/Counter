@@ -1,0 +1,14 @@
+D:\ISMAR\Tests\kfzteile24\final\API\Counter\Counter\bin\Release\netcoreapp2.1\Counter.deps.json
+D:\ISMAR\Tests\kfzteile24\final\API\Counter\Counter\bin\Release\netcoreapp2.1\Counter.runtimeconfig.json
+D:\ISMAR\Tests\kfzteile24\final\API\Counter\Counter\bin\Release\netcoreapp2.1\Counter.runtimeconfig.dev.json
+D:\ISMAR\Tests\kfzteile24\final\API\Counter\Counter\bin\Release\netcoreapp2.1\Counter.dll
+D:\ISMAR\Tests\kfzteile24\final\API\Counter\Counter\bin\Release\netcoreapp2.1\Counter.pdb
+D:\ISMAR\Tests\kfzteile24\final\API\Counter\Counter\obj\Release\netcoreapp2.1\Counter.csprojAssemblyReference.cache
+D:\ISMAR\Tests\kfzteile24\final\API\Counter\Counter\obj\Release\netcoreapp2.1\Counter.csproj.CoreCompileInputs.cache
+D:\ISMAR\Tests\kfzteile24\final\API\Counter\Counter\obj\Release\netcoreapp2.1\Counter.RazorAssemblyInfo.cache
+D:\ISMAR\Tests\kfzteile24\final\API\Counter\Counter\obj\Release\netcoreapp2.1\Counter.RazorAssemblyInfo.cs
+D:\ISMAR\Tests\kfzteile24\final\API\Counter\Counter\obj\Release\netcoreapp2.1\Counter.AssemblyInfoInputs.cache
+D:\ISMAR\Tests\kfzteile24\final\API\Counter\Counter\obj\Release\netcoreapp2.1\Counter.AssemblyInfo.cs
+D:\ISMAR\Tests\kfzteile24\final\API\Counter\Counter\obj\Release\netcoreapp2.1\Counter.RazorTargetAssemblyInfo.cache
+D:\ISMAR\Tests\kfzteile24\final\API\Counter\Counter\obj\Release\netcoreapp2.1\Counter.dll
+D:\ISMAR\Tests\kfzteile24\final\API\Counter\Counter\obj\Release\netcoreapp2.1\Counter.pdb

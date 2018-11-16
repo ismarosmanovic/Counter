@@ -1,0 +1,166 @@
+﻿@{
+    ViewBag.Title = "WEB Counter";
+}
+
+<div class="row">
+
+    <div class="col s12 p-xs">
+        <div class="card">
+            <div class="card-content no-padding">
+                <div class="input-field col s12 p-s">
+                    <i class="material-icons prefix">phonelink</i>
+                    <input id="servername" type="text" class="validate" name="servername" value="@System.Web.Configuration.WebConfigurationManager.AppSettings["ServiceURL"]" readonly>
+                    <label for="icon_prefix">Server Ip/Address</label>
+                </div>
+
+                <div class="row">
+                    <div class="col s6 no-padding p-l-l">
+                        <a href="#" class="btn blue full-width" onclick="GetCounter()">GET COUNTER VALUE</a>
+                    </div>
+                    <div class="col s6 p-l-s">
+                        <a href="#" class="btn blue full-width" onclick="IncreaseCounter()">INCREASE COUNTER</a>
+                    </div>
+                </div>
+                <div class="row no-bottom-margin p-l-m">
+                    <div class="input-field col s12">
+                        <input id="CounterValue" type="text" class="validate" name="CounterValue" readonly>
+                        <label for="CounterValue">Total Count</label>
+                    </div>
+                </div>
+                <div class="row no-bottom-margin p-l-m">
+                    <div class="input-field col s12">
+                        <input id="TotalIncreasmentCalls" type="text" class="validate" name="TotalIncreasmentCalls" readonly>
+                        <label for="TotalIncreasmentCalls">Total Increasment Calls</label>
+                    </div>
+                </div>
+                <div class="row no-bottom-margin p-l-m">
+                    <div class="input-field col s12">
+                        <input id="MemoryAddress" type="text" class="validate" name="MemoryAddress" readonly>
+                        <label for="MemoryAddress">Memory Address</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-action">
+                <a href="#" class="btn blue full-width" onclick="ResetCounter()">
+                    <i class="material-icons">delete</i>
+                    RESET COUNTER
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+@* Modal to Inform that counter was increased *@
+<div id="ModalQuestion" class="modal">
+    <div class="modal-content">
+        <h4>You increased counter value</h4>
+        <p>Would you like to check last counter value?</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">NO</a>
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat" onclick="GetCounter()">YES</a>
+    </div>
+</div>
+@* Modal to Confirm if counter should reset *@
+<div id="ModalReset" class="modal">
+    <div class="modal-content">
+        <h4>Counter Will Reset</h4>
+        <p>Would you like to reset counter value and put it on initial value of 0?</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">NO</a>
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat" onclick="Destroy()">YES</a>
+    </div>
+</div>
+
+<script>
+
+    function Destroy() {
+        if ($("#servername").val() === "")
+        {
+            alert("Please eddit web.config file for Server Address");
+            return;
+        }
+        $(".loader-wrapper").css("display", "block");
+        $.ajax({
+            type: 'POST',
+            url: $("#servername").val() + '/api/ResetCounter',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            success: function (data) {
+                $(".loader-wrapper").css("display", "none");
+                GetCounter();
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                $(".loader-wrapper").css("display", "none");
+                alert(errorThrown);
+            }
+        });
+    }
+
+    function ResetCounter() {
+        if ($("#servername").val() === "") {
+            alert("Please eddit web.config file for Server Address");
+            return;
+        }
+        $("#ModalReset").modal("open");
+    }
+
+    function IncreaseCounter() {
+        if ($("#servername").val() === "") {
+            alert("Please eddit web.config file for Server Address");
+            return;
+        }
+        $(".loader-wrapper").css("display", "block");
+        $.ajax({
+            type: 'POST',
+            url: $("#servername").val() + '/api/SetCounter',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            success: function (data) {
+                $(".loader-wrapper").css("display", "none");
+                $("#ModalQuestion").modal("open");
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                $(".loader-wrapper").css("display", "none");
+                alert(errorThrown);
+            }
+        });
+    }
+    function GetCounter() {
+        if ($("#servername").val() === "") {
+            alert("Please eddit web.config file for Server Address");
+            return;
+        }
+        $(".loader-wrapper").css("display", "block");
+        $.ajax({
+            type: 'GET',
+            url: $("#servername").val() + '/api/GetCounter',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            success: function (data) {
+                $(".loader-wrapper").css("display", "none");
+                $("#CounterValue").val(data.counterValue);
+                $("#TotalIncreasmentCalls").val(data.increasmentCalls);
+                $("#MemoryAddress").val(data.memoryAddress);
+                M.updateTextFields();
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                $(".loader-wrapper").css("display", "none");
+                alert(errorThrown);
+            }
+        });
+
+        /* Or same with get
+        $.get($("#servername").val() + "/api/GetCounter", function (data, status) {
+            $("#CounterValue").val(data.counterValue);
+            $("#TotalIncreasmentCalls").val(data.increasmentCalls);
+            $("#MemoryAddress").val(data.memoryAddress);
+        });
+        */
+    }
+</script>

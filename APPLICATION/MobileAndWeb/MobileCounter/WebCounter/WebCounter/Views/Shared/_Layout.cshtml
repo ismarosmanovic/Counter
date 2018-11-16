@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Counter Application</title>
+    <link href="~/Content/materialize.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+    <nav class="blue">
+        <div class="nav-wrapper p-l-m">
+
+            <ul id="nav-mobile" class="left">
+                <li> <i class="material-icons">phone_iphone</i></li>
+                <li>Mobil Counter</li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="pContainer">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Counter Application</p>
+        </footer>
+    </div>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".loader-wrapper").css("display", "none");
+            $(".modal").modal();
+        });
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+﻿<div layout="column" ng-cloak>
+    <md-toolbar class="md-primary">
+        <div class="md-toolbar-tools">
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon ng_bind="'phone_iphone'" aria-label="Pencereyi Kapatınız"></md-icon>
+            </md-button>
+            
+            <h2 class="md-flex">Mobil Counter</h2>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <md-card>
+                <md-card-content>
+                    <md-input-container class="md-icon-float md-block no-bottom-margin">
+                        <!-- Use floating label instead of placeholder -->
+                        <label>Server Ip/Address </label>
+                        <md-icon ng_bind="'phonelink'" aria-label="Server Ip/Address"></md-icon>
+                        <input ng-model="servername" required type="text" name="servername">
+                        <div ng-messages="LoginForm.servername.$error">
+                            <div ng-message="required">You must provide Server IP/Address.</div>
+                        </div>
+                    </md-input-container>
+                    <div layout="row" class="buttondiv">
+                        <md-button class="md-primary md-raised md-block no-margin" ng-click="GetCounter()">GET COUNTER VALUE</md-button>
+                        <md-button class="md-primary md-raised md-block no-margin m-l-s" ng-click="IncreaseCounter()">INCREASE COUNTER</md-button>
+                    </div>
+
+                    <div layout="column" class="p-m">
+                        <md-input-container class="no-bottom-margin">
+                            <label>Total Count</label>
+                            <input ng-model="CounterValue" readonly>
+                        </md-input-container>
+                        <md-input-container class="no-margin">
+                            <label>Total Increasment Calls</label>
+                            <input ng-model="TotalIncreasmentCalls" readonly>
+                        </md-input-container>
+                        <md-input-container class="no-margin">
+                            <label>Memory Address</label>
+                            <input ng-model="MemoryAddress" readonly>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-button class="md-primary md-raised md-block no-margin full-width" ng-click="ResetCounter()">
+                            <md-icon ng_bind="'delete'" aria-label="Reset Counter"></md-icon>
+                            RESET COUNTER
+                        </md-button>
+                    </div>
+                </md-card-content>
+            </md-card>
+            
+        </div>
+    </md-dialog-content>
+</div>
